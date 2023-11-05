@@ -4,6 +4,10 @@
 # Compiled Python files
 __pycache__/
 
+# Build
+build/
+dist/
+
 # Python virtual environment
 venv/
 
