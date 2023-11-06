@@ -1,6 +1,4 @@
 import pygame
-from sys import exit
-from os.path import join
 
 CELL_SIZE = 80
 ROWS = 10

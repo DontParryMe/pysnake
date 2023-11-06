@@ -1,7 +1,7 @@
 import time
+from os.path import join
 
-import pygame.event
-
+from code.resources import resource_path
 from settings import *
 from snake import Snake
 from apple import Apple
@@ -12,7 +12,7 @@ class Main:
         # general
         pygame.init()
         self.display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-        pygame.display.set_caption('Pysnake')
+        pygame.display.set_caption('PySnake')
 
         # game objects
         self.bg_rects = [pygame.Rect((col + int(row % 2 == 0)) * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE)
@@ -28,8 +28,14 @@ class Main:
         self.input_delay = 0.05
 
         # audio
-        self.crunch_sound = pygame.mixer.Sound(join('..', 'audio', 'crunch.wav'))
-        self.bg_music = pygame.mixer.Sound(join('..', 'audio', 'Arcade.ogg'))
+        # self.crunch_sound = pygame.mixer.Sound(join('..', 'audio', 'crunch.wav'))
+        # self.bg_music = pygame.mixer.Sound(join('..', 'audio', 'Arcade.ogg'))
+
+        crunch_path = resource_path(join('audio', 'crunch.wav'))
+        self.crunch_sound = pygame.mixer.Sound(crunch_path)
+        bg_music_path = resource_path(join('audio', 'Arcade.ogg'))
+        self.bg_music = pygame.mixer.Sound(bg_music_path)
+
         self.bg_music.set_volume(0.5)
 
         # score counter

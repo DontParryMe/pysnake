@@ -1,4 +1,7 @@
+import os
 from random import choice
+
+from code.resources import resource_path
 from settings import *
 from math import sin
 
@@ -10,7 +13,9 @@ class Apple:
         self.snake = snake
         self.set_pos()
 
-        self.surf = pygame.image.load(join('..', 'graphics', 'apple.png')).convert_alpha()
+        image_path = resource_path(os.path.join('graphics', 'apple.png'))
+        self.surf = pygame.image.load(image_path).convert_alpha()
+        # self.surf = pygame.image.load(join('..', 'graphics', 'apple.png')).convert_alpha()
         self.scaled_surf = self.surf.copy()
         self.scaled_rect = self.scaled_surf.get_rect(center=(self.pos.x * CELL_SIZE + CELL_SIZE / 2,
                                                              self.pos.y * CELL_SIZE + CELL_SIZE / 2))
@@ -27,3 +32,4 @@ class Apple:
                                                              self.pos.y * CELL_SIZE + CELL_SIZE / 2))
 
         self.display_surface.blit(self.scaled_surf, self.scaled_rect)
+
