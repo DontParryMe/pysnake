@@ -1,10 +1,11 @@
+import sys
 import time
 from os.path import join
 
 from code.resources import resource_path
-from settings import *
-from snake import Snake
-from apple import Apple
+from code.settings import *
+from code.snake import Snake
+from code.apple import Apple
 
 
 class Main:
@@ -17,6 +18,7 @@ class Main:
         # game objects
         self.bg_rects = [pygame.Rect((col + int(row % 2 == 0)) * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE)
                          for col in range(0, COLS, 2) for row in range(ROWS)]
+
         self.snake = Snake()
         self.apple = Apple(self.snake)
 
@@ -79,7 +81,7 @@ class Main:
                         waiting_for_key = False
                     if event.type == pygame.QUIT:
                         pygame.quit()
-                        exit()
+                        sys.exit()
             self.snake.reset()
             self.game_active = False
             self.score = 0
@@ -116,7 +118,7 @@ class Main:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
-                    exit()
+                    sys.exit()
 
                 if event.type == self.update_event and self.game_active:
                     self.snake.update()
@@ -138,5 +140,7 @@ class Main:
 
 
 if __name__ == '__main__':
+    print('sys.path:', sys.path)
     main = Main()
     main.run()
+

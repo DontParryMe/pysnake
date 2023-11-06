@@ -1,8 +1,12 @@
 a = Analysis(['code/main.py'],
-             pathex=['D:\\pet_projects\\pysnake'],
+             pathex=['.'],
              binaries=[],
-             datas=[('graphics\\*', 'graphics'), ('audio\\*', 'audio')],
-             hiddenimports=[],
+             datas=[
+                 ('graphics/apple.png', 'graphics'),
+                 ('graphics/snake/*', 'graphics/snake'),
+                 ('audio/*', 'audio')
+             ],
+             hiddenimports=['code.settings'],
              hookspath=[],
              runtime_hooks=[],
              excludes=[],
@@ -23,6 +27,6 @@ exe = EXE(pyz,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
-          console=True,
+          console=False,
           onefile=True,
         )

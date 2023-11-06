@@ -1,7 +1,8 @@
+import os
 from os.path import join
 
 from code.resources import resource_path
-from settings import *
+from code.settings import *
 from os import walk
 
 
@@ -23,14 +24,17 @@ class Snake:
 
     def import_surfs(self):
         surf_dict = {}
-        folder_path = resource_path(join('graphics', 'snake'))
+        # Теперь путь указывает на папку 'graphics', без подпапки 'snake'
+        folder_path = resource_path('graphics/snake')
+        print(f'Looking in: {folder_path}')
+        if not os.path.exists(folder_path):
+            print(f'Path does not exist: {folder_path}')
         for _, _, image_names in walk(folder_path):
             for image_name in image_names:
-                if image_name.endswith('.png'):
-                    full_path = resource_path(join(folder_path, image_name))
-                    surface = pygame.image.load(full_path).convert_alpha()
-                    key_name = image_name.split('.')[0]
-                    surf_dict[key_name] = surface
+                full_path = resource_path(join(folder_path, image_name))
+                surface = pygame.image.load(full_path).convert_alpha()
+                key_name = image_name.split('.')[0]
+                surf_dict[key_name] = surface
         return surf_dict
 
     def update(self):

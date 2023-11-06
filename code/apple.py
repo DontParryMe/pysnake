@@ -2,7 +2,7 @@ import os
 from random import choice
 
 from code.resources import resource_path
-from settings import *
+from code.settings import *
 from math import sin
 
 
