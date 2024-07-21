@@ -10,19 +10,16 @@ from code.apple import Apple
 
 class Main:
     def __init__(self):
-        # general
         pygame.init()
         self.display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         pygame.display.set_caption('PySnake')
 
-        # game objects
         self.bg_rects = [pygame.Rect((col + int(row % 2 == 0)) * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE)
                          for col in range(0, COLS, 2) for row in range(ROWS)]
 
         self.snake = Snake()
         self.apple = Apple(self.snake)
 
-        # timer
         self.update_event = pygame.event.custom_type()
         pygame.time.set_timer(self.update_event, 200)
         self.game_active = False
@@ -36,7 +33,6 @@ class Main:
 
         self.bg_music.set_volume(0.5)
 
-        # score counter
         self.score = 0
 
     def draw_bg(self):
@@ -63,7 +59,7 @@ class Main:
             self.snake.has_eaten = True
             self.apple.set_pos()
             self.crunch_sound.play()
-            self.score += 1  # Увеличиваем счетчик
+            self.score += 1
 
         if self.snake.body[0] in self.snake.body[1:] or \
                 not 0 <= self.snake.body[0].x < COLS or \
