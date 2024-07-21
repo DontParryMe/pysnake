@@ -28,11 +28,7 @@ class Main:
         self.game_active = False
         self.last_input_time = 0
         self.input_delay = 0.05
-
-        # audio
-        # self.crunch_sound = pygame.mixer.Sound(join('..', 'audio', 'crunch.wav'))
-        # self.bg_music = pygame.mixer.Sound(join('..', 'audio', 'Arcade.ogg'))
-
+        
         crunch_path = resource_path(join('audio', 'crunch.wav'))
         self.crunch_sound = pygame.mixer.Sound(crunch_path)
         bg_music_path = resource_path(join('audio', 'Arcade.ogg'))
